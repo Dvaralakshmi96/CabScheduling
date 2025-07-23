@@ -37,7 +37,7 @@ def is_night_shift(start, end):
 
 @app.route('/')
 def home():
-return "SmartCab is live! Use /request_cab or /track_requests in the URL."
+    return "CabScheduling is live! Use /request_cab or /track_requests in the URL."
 
 @app.route('/request_cab', methods=['GET', 'POST'])
 def request_cab():
