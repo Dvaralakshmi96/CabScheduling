@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, session
 from datetime import time
 import sqlite3
+import os
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -33,6 +34,10 @@ def mock_login():
 
 def is_night_shift(start, end):
     return start >= time(20, 0) or end <= time(6, 0)
+
+@app.route('/')
+def home():
+return "SmartCab is live! Use /request_cab or /track_requests in the URL."
 
 @app.route('/request_cab', methods=['GET', 'POST'])
 def request_cab():
@@ -74,5 +79,6 @@ def track_requests():
     conn.close()
     return render_template('track_requests.html', requests=requests)
 
-if _name_ == '_main_':
-    app.run(host='0.0.0.0', port=10000)
+if __name__ == '__main__':
+    port=int(os.environ.get('PORT',10000))
+    app.run(host='0.0.0.0', port=port)
