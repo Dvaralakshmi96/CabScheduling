@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Cab Requests</title>
+    <style>
+        table { border-collapse: collapse; width: 80%; margin: auto; }
+        th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
+        th { background-color: #007BFF; color: white; }
+    </style>
+</head>
+<body>
+    <h2 align="center">Your Cab Request History</h2>
+    <table>
+        <tr>
+            <th>Request ID</th>
+            <th>Shift Start</th>
+            <th>Shift End</th>
+            <th>Status</th>
+            <th>Approved By</th>
+            <th>Requested On</th>
+        </tr>
+        {% for r in requests %}
+        <tr>
+            <td>{{ r.request_id }}</td>
+            <td>{{ r.shift_start }}</td>
+            <td>{{ r.shift_end }}</td>
+            <td>{{ r.status }}</td>
+            <td>{{ r.approved_by if r.approved_by else '-' }}</td>
+            <td>{{ r.request_time }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
